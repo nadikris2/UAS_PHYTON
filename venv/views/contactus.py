@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for,Blueprint
-from pos.models.contactus import Contactus
-from pos.models import db
+from venv.models.contactus import Contactus
+from venv.models import db
 
 bp = Blueprint("contactus",__name__)
 
