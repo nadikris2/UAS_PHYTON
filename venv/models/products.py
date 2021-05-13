@@ -1,5 +1,5 @@
 # pos/models/products.py
-from pos.models import db
+from venv.models import db
 #menarik data didalam database mysql untuk dapat di gunakan secara global 
 
 class Products(db.Model):
