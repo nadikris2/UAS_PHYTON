@@ -1,4 +1,4 @@
-from pos.models import db
+from venv.models import db
 from datetime import datetime
 #menarik data didalam database mysql untuk dapat di gunakan secara global 
 class Transactions(db.Model):
