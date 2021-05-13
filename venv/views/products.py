@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect
-from pos.models.products import Products
-from pos.models import db
+from venv.models.products import Products
+from venv.models import db
 
 bp = Blueprint("products",__name__)
 
