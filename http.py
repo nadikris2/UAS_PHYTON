@@ -1,7 +1,7 @@
 from flask import Flask
-from pos.config import Config
-from pos.models import db
-from pos.views import products, transactions,contactus
+from venv.config import Config
+from venv.models import db
+from venv.views import products, transactions,contactus
 
 def create_app(config=Config):
 	app = Flask(__name__)
