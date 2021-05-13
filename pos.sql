@@ -92,14 +92,17 @@ INSERT INTO `transactions` VALUES (5,'2017-06-09 17:03:35');
 UNLOCK TABLES;
 
 
-DROP TABLE IF EXISTS `login`;
-CREATE TABLE `contactus` (
+DROP TABLE IF EXISTS `member`;
+CREATE TABLE `member` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `users` varchar(45) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `hub` varchar(45) NOT NULL,
-  `judul` varchar(45) NOT NULL,
-  `isi` varchar(100) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `member`;
+CREATE TABLE `member` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 --
