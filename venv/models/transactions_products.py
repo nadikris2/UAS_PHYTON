@@ -1,7 +1,7 @@
-from pos.models import db
+from venv.models import db
 from sqlalchemy.orm import relationship
 from sqlalchemy import event
-from pos.models.products import Products
+from venv.models.products import Products
 #menarik data didalam database mysql untuk dapat di gunakan secara global 
 class TransactionProducts(db.Model):
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
