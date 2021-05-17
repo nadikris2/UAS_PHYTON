@@ -16,329 +16,104 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `category`
+-- Table structure for table `products`
 --
 
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category` (
-  `categoryID` int(11) NOT NULL,
-  `categoryName` varchar(45) NOT NULL
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `price` int(11) NOT NULL,
+  `stock` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`categoryID`, `categoryName`) VALUES
-(3, 'DOG'),
-(4, 'CAT'),
-(5, 'HEALTHCARE'),
-(7, 'TOYS'),
-(9, 'ACCESORIES');
-
--- --------------------------------------------------------
---
--- Table structure for table `orders`
---
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE `orders` (
-  `orderID` int(11) NOT NULL ,
-  `userID` int(45) NOT NULL,
-  `statusID` int(45) NOT NULL,
-  `total_price` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `orders_detail`
+-- Dumping data for table `products`
 --
 
-DROP TABLE IF EXISTS `orders_detail`;
-CREATE TABLE `orders_detail` (
-  `orderID` int(11) NOT NULL ,
-  `productID` int(45) NOT NULL,
-  `quantity` decimal(5,0) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'sabun',7000,90),(2,'indomie',4000,80),(3,'pensil',1500,12);
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `payment`
+-- Table structure for table `transaction_products`
 --
 
-DROP TABLE IF EXISTS `payment`;
-CREATE TABLE `payment` (
-  `paymentID` int(11) NOT NULL ,
-  `userID` int(45) NOT NULL,
-  `orderID` int(45) NOT NULL,
-  `totalPrice` decimal(20,0) NOT NULL,
-  `shippingMethod` varchar(45) NOT NULL,
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `transaction_products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `transaction_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `transaction_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_qty` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `product`
+-- Dumping data for table `transaction_products`
 --
 
-DROP TABLE IF EXISTS `product`;
-CREATE TABLE `product` (
-  `productID` int(11) NOT NULL ,
-  `categoryID` int(45) NOT NULL,
-  `productName` varchar(45) NOT NULL,
-  `description` varchar(300) NOT NULL,
-  `image` varchar(50) NOT NULL,
-  `price` decimal(6,2) NOT NULL,
-  `quantity` decimal(5,0) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+LOCK TABLES `transaction_products` WRITE;
+/*!40000 ALTER TABLE `transaction_products` DISABLE KEYS */;
+INSERT INTO `transaction_products` VALUES (3,5,1,10),(4,5,2,20);
+/*!40000 ALTER TABLE `transaction_products` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Dumping data for table `product`
---
-INSERT INTO `product` (`productID`, `categoryID`, `productName`, `description`, `image`, `price`, `quantity`) VALUES
-(1, 1, 'NURTURE PRO', 'LAMB LB PUPPY & ADULT 11.8 KG. Kami menawarkan resep dengan nutrisi seimbang yang tepat untuk mencegah kelainan pertumbuhan sementara, mencegah obesitas dengan energi densed kibbles rendah kami. resep kami juga mengandung tingkat kalsium dan fosfor yang rendah, untuk mengurangi timbulnya pepenyakit ortopedi.', '/static/profile_pics/1.png', 'IDR 1.300.000', '100');
--- --------------------------------------------------------
-
---
--- Table structure for table `role`
---
-DROP TABLE IF EXISTS `role`;
-CREATE TABLE `role` (
-  `roleID` int(9) NOT NULL,
-  `roleName` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `role`
+-- Table structure for table `transactions`
 --
 
-INSERT INTO `role` (`roleID`, `roleName`) VALUES
-(1, 'user'),
-(2, 'admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `status`
---
-DROP TABLE IF EXISTS `status`;
-CREATE TABLE `status` (
-  `statusID` int(9) NOT NULL,
-  `statusName` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `transactions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `transactions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_on` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `status`
+-- Dumping data for table `transactions`
 --
 
-INSERT INTO `status` (`statusID`, `statusName`) VALUES
-(1, 'pending'),
-(2, 'checkout'),
-(3, 'canceled');
--- --------------------------------------------------------
+LOCK TABLES `transactions` WRITE;
+/*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
+
+/*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
 --
+
+
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `userID` int(9) NOT NULL,
-  `username` varchar(25) NOT NULL,
-  `passwords` longtext NOT NULL,
-  `roleID` int(9) NOT NULL,
-  `TimeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`userID`, `username`, `passwords`, `roleID`, `TimeStamp`) VALUES
-(1, 'user1', '$2b$12$dgWU4ISskRSAWUFaUPeTue/KvaqPOOOTHh0X/KSjgstICc2VZBD4G', 1, '2018-12-01 16:04:07');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_info`
---
-DROP TABLE IF EXISTS `user_info`;
-CREATE TABLE `user_info` (
-  `infoID` int(9) NOT NULL,
-  `userID` int(9) NOT NULL,
-  `nickname` varchar(50) NOT NULL,
-  `fullname` varchar(50) NOT NULL,
-  `phone` varchar(50) NOT NULL,
-  `address` varchar(30) NOT NULL,
-  `city` varchar(20) NOT NULL,
-  `state` char(2) NOT NULL,
-  `zipCode` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_info`
---
-INSERT INTO `user_info` (`infoID`, `userID`, `nickname`, `fullname`, `phone`, `address`, `city`, `state`, `zipCode`) VALUES
-(1, 1, '', 'Jet J Krisnadi', '082117345481', 'Jl.Puri Harapan D2-48', 'Bekasi', 'IND', '17125');
-
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`categoryID`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`orderID`),
-  ADD KEY `orders_FK1` (`userID`),
-  ADD KEY `orders_FK2` (`statusID`);
-
---
--- Indexes for table `orders_detail`
---
-ALTER TABLE `orders_detail`
-  ADD KEY `ordersDetail_FK1` (`orderID`),
-  ADD KEY `ordersDetail_FK2` (`productID`);
-
---
--- Indexes for table `payment`
---
-ALTER TABLE `payment`
-  ADD PRIMARY KEY (`paymentID`),
-  ADD KEY `payment_FK1` (`orderID`),
-  ADD KEY `payment_FK2` (`userID`);
-
---
--- Indexes for table `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`productID`),
-  ADD KEY `product_FK1` (`categoryID`);
-
---
--- Indexes for table `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`roleID`);
-
---
--- Indexes for table `status`
---
-ALTER TABLE `status`
-  ADD PRIMARY KEY (`statusID`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`userID`),
-  ADD KEY `users_FK1` (`roleID`);
-
---
--- Indexes for table `user_info`
---
-ALTER TABLE `user_info`
-  ADD PRIMARY KEY (`infoID`),
-  ADD KEY `BelongTo_FK1` (`userID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `categoryID` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `orderID` mediumint(9) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payment`
---
-ALTER TABLE `payment`
-  MODIFY `paymentID` mediumint(9) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `product`
---
-ALTER TABLE `product`
-  MODIFY `productID` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `role`
---
-ALTER TABLE `role`
-  MODIFY `roleID` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `status`
---
-ALTER TABLE `status`
-  MODIFY `statusID` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `userID` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `user_info`
---
-ALTER TABLE `user_info`
-  MODIFY `infoID` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_FK1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_FK2` FOREIGN KEY (`statusID`) REFERENCES `status` (`statusID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `orders_detail`
---
-ALTER TABLE `orders_detail`
-  ADD CONSTRAINT `ordersDetail_FK1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ordersDetail_FK2` FOREIGN KEY (`productID`) REFERENCES `product` (`productID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `payment`
---
-ALTER TABLE `payment`
-  ADD CONSTRAINT `payment_FK1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `payment_FK2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `product`
---
-ALTER TABLE `product`
-  ADD CONSTRAINT `product_FK1` FOREIGN KEY (`categoryID`) REFERENCES `category` (`categoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_FK1` FOREIGN KEY (`roleID`) REFERENCES `role` (`roleID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `user_info`
---
-ALTER TABLE `user_info`
-  ADD CONSTRAINT `BelongTo_FK1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
+CREATE TABLE `contactus` (
+   `user_id` int(6) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `name` varchar(200) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `google_id` varchar(500) DEFAULT NULL,
+  `gcm_id` varchar(1000) DEFAULT NULL,
+  `picture_url` varchar(500) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_app_version` varchar(20) DEFAULT NULL,
+  `last_used_timestamp` timestamp NULL DEFAULT NULL,
+  `source` varchar(20) NOT NULL DEFAULT 'android',
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 --
 -- Dumping events for database 'pos'
 --
