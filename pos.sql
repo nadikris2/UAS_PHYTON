@@ -97,14 +97,22 @@ UNLOCK TABLES;
 
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(128) NOT NULL,
-  `pass` varchar(128) NOT NULL,
-  `email` varchar(128) NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (ID)
+CREATE TABLE `contactus` (
+   `user_id` int(6) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `name` varchar(200) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `google_id` varchar(500) DEFAULT NULL,
+  `gcm_id` varchar(1000) DEFAULT NULL,
+  `picture_url` varchar(500) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_app_version` varchar(20) DEFAULT NULL,
+  `last_used_timestamp` timestamp NULL DEFAULT NULL,
+  `source` varchar(20) NOT NULL DEFAULT 'android',
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 --
 -- Dumping events for database 'pos'
