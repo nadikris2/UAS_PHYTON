@@ -24,7 +24,7 @@ class role(Model):
          db.session.commit()
 
 
-    def delete(self,id):
+    def delete(self,role_id):
         role = role.query.filter_by(id=role_id).first()
         db.session.delete(role)
         db.session.commit()
