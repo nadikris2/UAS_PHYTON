@@ -1,5 +1,5 @@
 from flask import Flask
-from venv.config import Config
+from config import Config
 from venv.models import db
 from venv.views import products, transactions,contactus
 
