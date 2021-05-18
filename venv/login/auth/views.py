@@ -4,7 +4,7 @@ from flask_login import login_required, login_user, logout_user
 from . import auth
 from venv.auth.forms import LoginForm, RegistrationForm
 from .. import db
-from ..models import users,role
+from venv.models import users,role
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
