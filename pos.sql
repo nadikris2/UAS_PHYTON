@@ -118,7 +118,7 @@ CREATE TABLE `role` (
 -- Dumping data for table `role`
 --
 
-INSERT INTO `role` (`role.id`, `name`) VALUES
+INSERT INTO `role` (`roleID`, `name`) VALUES
 (1, 'user'),
 (2, 'admin');
 
