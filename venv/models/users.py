@@ -8,7 +8,7 @@ class Users(UserMixin.Model):
     name = db.Column(db.String(45), nullable=False)
     email = db.Column(db.String(45),nullable=False)
     password = db.Column(db.String(45),nullable=False)
-    roleID= db.Column(db.Integer, db.ForeignKey("role.roleID"),nullable=False)
+    roleID= db.Column(db.Integer, db.ForeignKey("role.id"),nullable=False)
     
     def __repr__(self):
         return '<User %r>' % self.name

@@ -109,15 +109,16 @@ CREATE TABLE users (
 --
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
-  `roleID` int(9) NOT NULL,
-  `roleName` varchar(25) NOT NULL
+  `role.id` int(9) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `users` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `role`
 --
 
-INSERT INTO `role` (`roleID`, `roleName`) VALUES
+INSERT INTO `role` (`role.id`, `name`) VALUES
 (1, 'user'),
 (2, 'admin');
 
