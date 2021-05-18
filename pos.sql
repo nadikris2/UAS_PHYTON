@@ -109,7 +109,7 @@ CREATE TABLE users (
 --
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
-  `role.id` int(9) NOT NULL,
+  `roleID` int(9) NOT NULL,
   `name` varchar(25) NOT NULL,
   `users` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

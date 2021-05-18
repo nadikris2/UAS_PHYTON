@@ -31,6 +31,7 @@ class Users(UserMixin.Model):
          users.password=password,
          users.id=id
          db.session.commit()
+         
     def update_password(self,password,id):
         users=users.query.filter_by(id=id).first()
         users.password = password

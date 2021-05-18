@@ -4,7 +4,7 @@ from venv.models import db
 #menarik data didalam database mysql untuk dapat di gunakan secara global 
 
 class role(Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    roleID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(45), nullable=False)
     users = db.relationship('Users', backref='role', lazy=True)
     
@@ -19,7 +19,7 @@ class role(Model):
         db.session.commit()
 
     def update(self,name,role_id):
-         role = role.query.filter_by(id=role_id).first()
+         role = role.query.filter_by(roleID=role_id).first()
          role.name=name
          db.session.commit()
 
