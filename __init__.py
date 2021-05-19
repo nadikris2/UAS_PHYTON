@@ -6,7 +6,9 @@ from venv.login.auth import  views,forms
 from venv.views import products, transactions,contactus
 from flask_bootstrap import Bootstrap
 from venv.login.config import app_config
-from venv.login import models
+from venv.login import models,home,admin,auth
+
+from flask_sqlalchemy import SQLAlchemy
 login_manager = LoginManager()
 
 db = SQLAlchemy()
@@ -29,9 +31,9 @@ def create_app(config=Config):
 	app.register_blueprint(products.bp)
 	app.register_blueprint(transactions.bp)
 	app.register_blueprint(contactus.bp)
-	app.register_blueprint(admin_blueprint,url_prifx='/admin')
-	app.register_blueprint(auth_blueprint)
-	app.register_blueprint(home_blueprint)
+	app.register_blueprint(admin.blueprint,url_prifx='/admin')
+	app.register_blueprint(auth.blueprint)
+	app.register_blueprint(home.blueprint)
 
 
 
