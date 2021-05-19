@@ -92,15 +92,28 @@ INSERT INTO `transactions` VALUES (5,'2017-06-09 17:03:35');
 UNLOCK TABLES;
 
 --
--- Table structure for table `users`
+-- Table structure for table `Employee`
 --
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE users ( 
+DROP TABLE IF EXISTS `Employee`;
+CREATE TABLE Employee ( 
   `id` int(30) NOT NULL AUTO_INCREMENT, 
   `name` varchar(20) NOT NULL, 
   `email` varchar(20) NOT NULL, 
-  `password` varchar(20) NOT NULL, 
-  `roleID` int(9) NOT NULL, 
+  `password_hash` varchar(20) NOT NULL, 
+  `role_id` int(9) NOT NULL, 
+  `is_admin` int(9) NOT NULL, 
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `departments`
+--
+DROP TABLE IF EXISTS `departments`;
+CREATE TABLE departments ( 
+  `id` int(30) NOT NULL AUTO_INCREMENT, 
+  `name` varchar(20) NOT NULL, 
+  `description` varchar(20) NOT NULL, 
+  `employees` varchar(20) NOT NULL,  
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
@@ -109,18 +122,12 @@ CREATE TABLE users (
 --
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
-  `roleID` int(9) NOT NULL,
+  `id` int(9) NOT NULL,
   `name` varchar(25) NOT NULL,
-  `users` varchar(25) NOT NULL
+  `description` varchar(25) NOT NULL,
+  `employees` varchar(20) NOT NULL,  
+  PRIMARY KEY('id')
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `role`
---
-
-INSERT INTO `role` (`roleID`, `name`) VALUES
-(1, 'user'),
-(2, 'admin');
 
 --
 -- Dumping events for database 'pos'

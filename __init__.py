@@ -2,7 +2,7 @@ from flask import Flask
 from flask_login import LoginManager
 from venv.instance.config import Config
 from venv.models import db
-from venv.auth import  views,forms
+from venv.login.auth import  views,forms
 from venv.views import products, transactions,contactus
 login_manager = LoginManager()
 
