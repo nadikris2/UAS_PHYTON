@@ -4,10 +4,17 @@ from venv.instance.config import Config
 from venv.models import db
 from venv.login.auth import  views,forms
 from venv.views import products, transactions,contactus
+from flask_bootstrap import Bootstrap
+from venv.login.config import app_config
+from venv.login import models
 login_manager = LoginManager()
+
+db = SQLAlchemy()
+
 
 def create_app(config=Config):
 	app = Flask(__name__)
+	Bootstrap(app)
 	# load config
 	app.config.from_object(config)
     
@@ -22,5 +29,10 @@ def create_app(config=Config):
 	app.register_blueprint(products.bp)
 	app.register_blueprint(transactions.bp)
 	app.register_blueprint(contactus.bp)
+	app.register_blueprint(admin_blueprint,url_prifx='/admin')
+	app.register_blueprint(auth_blueprint)
+	app.register_blueprint(home_blueprint)
+
+
 
 	return app

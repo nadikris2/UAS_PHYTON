@@ -126,7 +126,7 @@ CREATE TABLE `role` (
   `name` varchar(25) NOT NULL,
   `description` varchar(25) NOT NULL,
   `employees` varchar(20) NOT NULL,  
-  PRIMARY KEY('id')
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
